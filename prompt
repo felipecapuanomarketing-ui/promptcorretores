@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>5 Prompts para Corretores de Imóveis · @felipecapuano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000;
+    --bg-soft: #0a0a0a;
+    --ink: #ffffff;
+    --ink-dim: #8a8580;
+    --gold: #d4a437;
+    --gold-soft: #e6b94a;
+    --purple: #8b5cf6;
+    --purple-glow: #a78bfa;
+    --line: rgba(212, 164, 55, 0.25);
+    --card: #0d0d0d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    line-height: 1.55;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at top, rgba(139, 92, 246, 0.08), transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(212, 164, 55, 0.05), transparent 50%);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    z-index: 1;
+  }
+  .container { max-width: 880px; margin: 0 auto; padding: 56px 24px 100px; position: relative; z-index: 2; }
+  header { text-align: center; margin-bottom: 64px; padding-bottom: 48px; border-bottom: 1px solid var(--line); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 28px; padding: 8px 16px;
+    border: 1px solid var(--line); border-radius: 100px;
+  }
+  .badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  h1 {
+    font-family: 'Anton', sans-serif; font-weight: 400;
+    font-size: clamp(48px, 9vw, 88px); line-height: 0.92;
+    letter-spacing: 0.01em; text-transform: uppercase;
+  }
+  h1 .accent {
+    color: var(--purple); font-style: italic;
+    text-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+  }
+  .h1-divider { width: 60px; height: 2px; background: var(--gold); margin: 28px auto; }
+  .subtitle { font-size: 16px; color: var(--ink-dim); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+  .subtitle strong { color: var(--ink); font-weight: 600; }
+  .handle {
+    margin-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.3em; color: var(--ink-dim);
+  }
+  .instructions {
+    background: var(--card); border: 1px solid var(--line);
+    padding: 24px 28px; margin-bottom: 72px;
+    display: flex; gap: 20px; align-items: flex-start; border-radius: 4px;
+  }
+  .instructions-icon {
+    flex-shrink: 0; width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+    color: #000; display: grid; place-items: center; border-radius: 50%;
+    font-weight: 800; font-family: 'Anton', sans-serif; font-size: 18px;
+  }
+  .instructions p { font-size: 14px; color: var(--ink-dim); line-height: 1.6; }
+  .instructions strong { color: var(--ink); font-weight: 600; }
+  .prompt-card { margin-bottom: 64px; position: relative; }
+  .prompt-header { margin-bottom: 24px; }
+  .prompt-number {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--gold); letter-spacing: 0.25em;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 12px;
+  }
+  .prompt-number::after {
+    content: ''; flex: 1; max-width: 80px; height: 1px;
+    background: var(--gold); opacity: 0.5;
+  }
+  .prompt-title {
+    font-family: 'Anton', sans-serif; font-weight: 400;
+    font-size: clamp(40px, 7vw, 64px); line-height: 0.95;
+    letter-spacing: 0.01em; text-transform: uppercase;
+  }
+  .prompt-divider { width: 50px; height: 2px; background: var(--gold); margin: 20px 0 0; }
+  .prompt-body {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+    position: relative; overflow: hidden; margin-top: 24px;
+    border-radius: 4px; transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .prompt-body:hover { border-color: var(--line); box-shadow: 0 0 30px rgba(212, 164, 55, 0.06); }
+  .prompt-body::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .prompt-body pre {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    line-height: 1.75; color: var(--ink);
+    padding: 28px 28px 88px; white-space: pre-wrap; word-wrap: break-word;
+    max-height: 520px; overflow-y: auto;
+    scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+  }
+  .prompt-body pre::-webkit-scrollbar { width: 6px; }
+  .prompt-body pre::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .copy-btn {
+    position: absolute; bottom: 20px; right: 20px;
+    background: linear-gradient(135deg, var(--purple), #6d28d9);
+    color: white; border: none; padding: 14px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.25s;
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600; border-radius: 100px;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  .copy-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 30px rgba(139, 92, 246, 0.5); }
+  .copy-btn.copied { background: linear-gradient(135deg, var(--gold), var(--gold-soft)); color: #000; }
+  .copy-btn svg { width: 14px; height: 14px; }
+  .cta-final {
+    margin-top: 100px; padding: 56px 32px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(212, 164, 55, 0.04));
+    border: 1px solid var(--line); text-align: center;
+    border-radius: 4px; position: relative; overflow: hidden;
+  }
+  .cta-final::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent 60%);
+    animation: rotate 20s linear infinite;
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+  .cta-final > * { position: relative; z-index: 1; }
+  .cta-final h2 {
+    font-family: 'Anton', sans-serif; font-weight: 400;
+    font-size: clamp(32px, 6vw, 56px); line-height: 1;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .cta-final h2 .glow {
+    background: linear-gradient(135deg, var(--purple-glow), var(--purple));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-final p { font-size: 16px; color: var(--ink-dim); max-width: 420px; margin: 0 auto 28px; line-height: 1.6; }
+  .cta-final p strong { color: var(--ink); font-weight: 600; }
+  .cta-instagram {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--ink); color: #000;
+    padding: 16px 32px; border-radius: 100px;
+    text-decoration: none; font-weight: 700;
+    font-size: 14px; letter-spacing: 0.05em; transition: transform 0.2s;
+  }
+  .cta-instagram:hover { transform: translateY(-2px); }
+  footer { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
+  footer p {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--ink-dim); letter-spacing: 0.25em; text-transform: uppercase;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 40px 18px 80px; }
+    .prompt-body pre { padding: 22px 22px 84px; font-size: 12.5px; }
+    .copy-btn { left: 22px; right: 22px; justify-content: center; }
+    .instructions { flex-direction: column; gap: 12px; padding: 20px; }
+    .cta-final { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="badge">5 Prompts · Mercado Imobiliário</div>
+  <h1>Use IA<br>e <span class="accent">venda mais</span></h1>
+  <div class="h1-divider"></div>
+  <p class="subtitle">5 prompts profissionais pra você criar conteúdo, atrair leads e <strong>vender mais imóveis</strong> usando inteligência artificial.</p>
+  <div class="handle">@FELIPECAPUANO</div>
+</header>
+
+<div class="instructions">
+  <div class="instructions-icon">→</div>
+  <p><strong>Como usar:</strong> toque em <strong>"Copiar"</strong> em cada card e cole no ChatGPT, Claude ou Gemini. Substitua os campos entre [colchetes] pelas suas informações reais. Funciona melhor se você rodar os prompts em sequência (1 → 2 → 3 → 4 → 5) na <strong>mesma janela do chat</strong>.</p>
+</div>
+
+<article class="prompt-card">
+  <div class="prompt-header">
+    <div class="prompt-number">PROMPT 01 / 05</div>
+    <h2 class="prompt-title">Diagnóstico</h2>
+    <div class="prompt-divider"></div>
+  </div>
+  <div class="prompt-body">
+    <pre id="p1">Atue como um estrategista de Instagram especializado em marketing imobiliário, com mais de 10 anos de experiência analisando perfis de corretores e imobiliárias de alta performance no Brasil.
+
+CONTEXTO DA MINHA CONTA:
+- Nicho: [ex: imóveis de alto padrão / lançamentos / praia / interior / locação]
+- Cidade/região onde atuo: [cidade]
+- Público que quero atrair: [ex: investidores 35-55 anos / famílias classe A / primeiro imóvel]
+- Ticket médio dos imóveis: [R$ X mil a R$ Y milhões]
+- Quantos seguidores tenho hoje: [número]
+- Quantos posts publico por semana: [número]
+- Qual meu objetivo principal nos próximos 90 dias: [ex: gerar leads qualificados / aumentar autoridade / fechar X vendas]
+
+MEUS 5 POSTS COM MELHOR DESEMPENHO (cole aqui o tema, formato e métricas):
+1. [tema do post] — [reel/carrossel/foto] — [views, curtidas, comentários, salvamentos]
+2. ...
+3. ...
+4. ...
+5. ...
+
+ME ENTREGUE UMA ANÁLISE COMPLETA EM 6 BLOCOS:
+
+1. PADRÕES DO QUE FUNCIONA — quais elementos se repetem nos 5 posts vencedores (formato, tema, gancho, horário, duração)?
+
+2. O QUE NÃO ESTÁ FUNCIONANDO — quais tipos de post provavelmente estão puxando minha média de alcance pra baixo, e por quê?
+
+3. O GAP ESTRATÉGICO — o que falta no meu perfil para sair do nível "corretor que posta" e virar referência de mercado na minha região?
+
+4. 3 PILARES DE CONTEÚDO IDEAIS pra mim, com a proporção sugerida (ex: 40% educacional, 30% bastidor, 30% prova social).
+
+5. ONDE FOCAR O DOBRO DO ESFORÇO nos próximos 30 dias (formato, tema e frequência específicos).
+
+6. 3 ÂNGULOS DE CONTEÚDO INEXPLORADOS que combinam com meu nicho e que poucos corretores estão usando.
+
+Seja direto, sem floreio. Quero feedback de quem entende do jogo, não elogio.</pre>
+    <button class="copy-btn" data-target="p1">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      <span>Copiar</span>
+    </button>
+  </div>
+</article>
+
+<article class="prompt-card">
+  <div class="prompt-header">
+    <div class="prompt-number">PROMPT 02 / 05</div>
+    <h2 class="prompt-title">Calendário</h2>
+    <div class="prompt-divider"></div>
+  </div>
+  <div class="prompt-body">
+    <pre id="p2">Com base na análise anterior, monte um CALENDÁRIO EDITORIAL DE 30 DIAS para meu Instagram, com 2 publicações por dia (60 peças no total).
+
+REGRAS DE DISTRIBUIÇÃO:
+- 40% reels (rápidos, com gancho forte nos 3 primeiros segundos)
+- 30% carrosséis (educacionais ou storytelling)
+- 20% stories sequenciais (bastidor + enquetes + caixinha)
+- 10% posts de autoridade (resultados, depoimentos, números do mercado)
+
+REGRAS DE CONTEÚDO:
+- Cada post deve atrair o [cliente ideal: descreva em 1 frase] e conduzi-lo até [meu produto/serviço: descreva em 1 frase].
+- Use 4 tipos de conteúdo, distribuídos ao longo do mês:
+  (a) Dor/problema do cliente,
+  (b) Aspiração/desejo do cliente,
+  (c) Educação técnica (financiamento, documentação, mercado),
+  (d) Prova social (vendas, depoimentos, bastidor de visita).
+- Os ÚLTIMOS 7 DIAS devem ter conteúdos de "fechamento": convite mais explícito pra agendar visita, conversar no direct ou conhecer um imóvel específico.
+
+FORMATO DA ENTREGA (em tabela):
+| Dia | Horário sugerido | Formato | Pilar | Tema | Gancho de abertura | CTA final |
+
+Antes da tabela, me dê um RESUMO ESTRATÉGICO de 5 linhas explicando a lógica do mês inteiro.
+
+Pense como se estivesse planejando o conteúdo de um corretor que quer dobrar de tamanho em 90 dias.</pre>
+    <button class="copy-btn" data-target="p2">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      <span>Copiar</span>
+    </button>
+  </div>
+</article>
+
+<article class="prompt-card">
+  <div class="prompt-header">
+    <div class="prompt-number">PROMPT 03 / 05</div>
+    <h2 class="prompt-title">Ganchos</h2>
+    <div class="prompt-divider"></div>
+  </div>
+  <div class="prompt-body">
+    <pre id="p3">Crie 15 GANCHOS DE ABERTURA (hooks) para reels e posts de um corretor de imóveis que atua com [seu nicho: alto padrão / lançamentos / praia / interior / etc.].
+
+OBJETIVO: parar o scroll do meu cliente ideal nos primeiros 3 segundos e fazer ele PRECISAR continuar assistindo/lendo.
+
+CRITÉRIOS OBRIGATÓRIOS:
+- Cada gancho com no máximo 10 palavras.
+- Linguagem natural, falada, como se eu tivesse abordando alguém num evento.
+- ZERO clichê de corretor ("realize seu sonho", "imóvel dos sonhos", "sua nova vida começa aqui").
+
+Use EXATAMENTE estas 5 alavancas, 3 ganchos para cada uma:
+
+1. CURIOSIDADE — começa com um fato incompleto ou um segredo do mercado.
+   Ex: "Tem um detalhe nesse contrato que ninguém te conta..."
+
+2. CONTRASTE — quebra uma crença comum do comprador.
+   Ex: "Comprar à vista nem sempre é melhor. Te explico:"
+
+3. IMPACTO/NÚMERO — abre com dado específico que assusta ou surpreende.
+   Ex: "94% dos compradores se arrependem por causa disso."
+
+4. DOR ESPECÍFICA — toca em uma frustração real do cliente.
+   Ex: "Cansado de visitar imóvel que não tem nada a ver com o anúncio?"
+
+5. AUTORIDADE/BASTIDOR — mostra que você tem acesso a algo que o cliente não tem.
+   Ex: "O que eu vi nesse condomínio você não acha em portal nenhum."
+
+Para cada gancho, indique entre parênteses:
+- Qual alavanca usou
+- Em que público bate mais forte (comprador iniciante / investidor / quem já visitou e desistiu)
+- Sugestão de formato ideal (reel falado, reel com b-roll, carrossel)</pre>
+    <button class="copy-btn" data-target="p3">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      <span>Copiar</span>
+    </button>
+  </div>
+</article>
+
+<article class="prompt-card">
+  <div class="prompt-header">
+    <div class="prompt-number">PROMPT 04 / 05</div>
+    <h2 class="prompt-title">Storytelling</h2>
+    <div class="prompt-divider"></div>
+  </div>
+  <div class="prompt-body">
+    <pre id="p4">Reescreva os textos dos meus posts usando STORYTELLING SIMPLES E PERSUASIVO, no padrão dos melhores criadores de conteúdo do mercado imobiliário.
+
+POSTS QUE QUERO REESCREVER (cole abaixo cada um):
+1. [post original]
+2. [post original]
+3. [post original]
+
+REGRAS DE ESCRITA:
+- Linguagem clara, nível de leitura de 6ª série. Sem jargão técnico desnecessário.
+- Frases curtas. Parágrafos de no máximo 2 linhas.
+- Comece com um GANCHO que pare o scroll (curiosidade, contraste, número ou dor).
+- Tom: direto, humano, com leve vulnerabilidade quando fizer sentido (mostrar erro antes de mostrar acerto gera mais conexão que só acerto).
+- Evite chavões: "realize seu sonho", "imóvel perfeito", "atendimento humanizado", "aqui é diferente".
+
+ESTRUTURA OBRIGATÓRIA EM CADA POST:
+1. GANCHO (1ª linha que para o scroll)
+2. CENA (situação real, lugar, sensação — concreta, não abstrata)
+3. CONFLITO (o problema, o erro, a dúvida que aparece)
+4. VIRADA (o aprendizado, a descoberta, o ponto-chave)
+5. PRINCÍPIO (o ensinamento universal que o leitor leva)
+6. CTA FORTE (não "clica no link da bio". Algo como: "comenta aqui se você já passou por isso", "manda DM com a palavra X se quer saber mais", "salva esse post pra quando você for visitar seu próximo imóvel").
+
+ENTREGUE para cada post:
+- A versão reescrita (até 150 palavras)
+- A explicação em 2 linhas do que mudou e por quê
+- 2 variações de CTA pra eu escolher</pre>
+    <button class="copy-btn" data-target="p4">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      <span>Copiar</span>
+    </button>
+  </div>
+</article>
+
+<article class="prompt-card">
+  <div class="prompt-header">
+    <div class="prompt-number">PROMPT 05 / 05</div>
+    <h2 class="prompt-title">Ideias Virais</h2>
+    <div class="prompt-divider"></div>
+  </div>
+  <div class="prompt-body">
+    <pre id="p5">Me dê 7 IDEIAS DE CONTEÚDO COM ALTO POTENCIAL DE VIRALIZAÇÃO para um corretor de imóveis que atua com [seu nicho], focado em gerar COMPARTILHAMENTOS, SALVAMENTOS e DIRECTS (não só curtida).
+
+CRITÉRIOS OBRIGATÓRIOS:
+- Cada ideia deve ser produzível em até 30 minutos, sem produção pesada (gravar do celular, com luz natural ou de janela).
+- Deve ser pensada pra fazer alguém marcar um amigo ("olha isso", "te mando porque você tava procurando") ou salvar pra depois.
+- ZERO ideia genérica do tipo "5 dicas pra comprar imóvel" ou "documentos necessários pra financiamento".
+- Cada ideia precisa ter um ÂNGULO ESPECÍFICO que SÓ um corretor com experiência conseguiria postar com credibilidade.
+
+PARA CADA IDEIA, ME ENTREGUE:
+
+1. TÍTULO/CHAMADA do conteúdo
+2. FORMATO ideal (reel falado, reel com b-roll, carrossel, foto + legenda longa)
+3. GANCHO de abertura (a primeira linha exata)
+4. ESTRUTURA INTERNA (o passo a passo do conteúdo, cena por cena ou slide por slide)
+5. CTA final
+6. EMOÇÃO PRINCIPAL que ela ativa (raiva justa, identificação, aspiração, validação, alívio, surpresa)
+7. POR QUE ela tem potencial de viralizar (qual é o "trigger" psicológico que faz alguém compartilhar)
+
+DICA: as ideias com maior potencial são as que (a) revelam um bastidor que ninguém conta, (b) quebram uma crença popular do mercado, (c) mostram um cálculo/comparação que economiza muito dinheiro pro comprador, ou (d) viram um "manual de sobrevivência" pra quem está comprando o primeiro imóvel.
+
+Pense como criador de conteúdo do mercado imobiliário que já viu o que viraliza.</pre>
+    <button class="copy-btn" data-target="p5">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      <span>Copiar</span>
+    </button>
+  </div>
+</article>
+
+<div class="cta-final">
+  <h2>Gostou? <span class="glow">Me segue.</span></h2>
+  <p>Todo dia eu compartilho <strong>estratégias de IA, conteúdo e vendas</strong> pra quem trabalha no mercado imobiliário.</p>
+  <a href="https://instagram.com/felipecapuano" class="cta-instagram" target="_blank" rel="noopener">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    @felipecapuano
+  </a>
+</div>
+
+<footer>
+  <p>5 Prompts · Mercado Imobiliário · @felipecapuano</p>
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const targetId = btn.getAttribute('data-target');
+    const text = document.getElementById(targetId).innerText;
+    const span = btn.querySelector('span');
+    const showCopied = () => {
+      span.textContent = 'Copiado ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        span.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 2000);
+    };
+    try {
+      await navigator.clipboard.writeText(text);
+      showCopied();
+    } catch (err) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showCopied();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
